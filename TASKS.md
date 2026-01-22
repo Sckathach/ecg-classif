@@ -1,0 +1,7 @@
+- [ ] Take matrices at 20% / 30% etc...
+- [ ] Make difference matrices SCI - AD for instance, to find interesting regions.
+- [ ] Interp: do not use all electrodes.
+- [ ] Plots with red blue contrast is better.
+- [ ] Visualiser pour pouvoir dire on prend alpha 20% graph, beta 40% region on electrode 4, 5, et 1.
+- [ ] PCA to keep 90% of the information, KMEANS multi dim, silhouette, ARI more interesting
+- [ ] Multi classe -> show performances class by class 
