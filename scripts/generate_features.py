@@ -98,13 +98,13 @@ def extract_graph_metrics(
 def generate_features(data_root: str = "data/", output_dir: str = "data/processed/"):
     os.makedirs(output_dir, exist_ok=True)
 
-    dataset = {"vector": {}, "regional": {}, "graph": {}}
+    dataset = {"vector": {}, "regional": {}, "graph": {}, "full": {}}
     group_map = {"SCI": 0, "MCI": 1, "AD": 2}
 
     for band in ["ALPHA", "BETA", "THETA", "DELTA"]:
         logger.info(f"Band: {band}...")
 
-        X_vec, X_reg, X_graph = [], [], []
+        X_vec, X_reg, X_graph, X_full = [], [], [], []
         y_list = []
         meta_list = []
 
@@ -134,6 +134,8 @@ def generate_features(data_root: str = "data/", output_dir: str = "data/processe
                     graph = extract_graph_metrics(matrix, threshold=0.2)
                     X_graph.append(graph)
 
+                    X_full.append(np.expand_dims(matrix, axis=0))
+
                     y_list.append(label)
                     meta_list.append((group, subject_id))
 
@@ -156,10 +158,16 @@ def generate_features(data_root: str = "data/", output_dir: str = "data/processe
             "y": np.array(y_list),
             "meta": meta_list,
         }
+        dataset["full"][band] = {
+            "X": np.concat(X_full, axis=0),
+            "y": np.array(y_list),
+            "meta": meta_list,
+        }
 
         logger.info(f"  Shape vector: {dataset['vector'][band]['X'].shape}")
         logger.info(f"  Shape regional: {dataset['regional'][band]['X'].shape}")
         logger.info(f"  Shape graph: {dataset['graph'][band]['X'].shape}")
+        logger.info(f"  Shape full: {dataset['full'][band]['X'].shape}")
 
     output_file = os.path.join(output_dir, "features.pkl")
     with open(output_file, "wb") as f:
