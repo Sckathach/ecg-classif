@@ -12,7 +12,6 @@ with open("data/processed/features.pkl", "rb") as f:
     data = pickle.load(f)
 
 loo = LeaveOneOut()
-model = RandomForestClassifier(n_estimators=100, random_state=33)
 
 X = data["regional"]["ALPHA"]["X"]
 y = data["regional"]["ALPHA"]["y"]
@@ -26,6 +25,8 @@ for train_index, test_index in loo.split(X):
     y_train, y_test = y[train_index], y[test_index]
 
     scaler = StandardScaler()
+    model = RandomForestClassifier(n_estimators=100, random_state=33)
+
     scaler.fit(X_train)
     selector = SelectKBest(f_classif, k=10)
     selector.fit(X_train, y_train)
