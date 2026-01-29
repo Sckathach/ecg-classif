@@ -30,6 +30,9 @@ Extraction des features -> (fusion?) -> selection des features -> (fusion?) -> m
 - [ ] Multi classe -> show performances class by class 
 - [ ] **Tableaux avec ROC AUC (entre 0 et 1), sensitivity (% et quelle classe), specificity (% et quelle classe), accuracy (%)**
 - [ ] **Pas de balanced accuracy -> downsampling + acc, roc, sensitivity, specificity**
+- [ ] Mettre la pipeline entière au début des slides
+- [ ] Attention, PCA ce n'est pas selection c'est dim reduction
+- [ ] Mettre **UNIQUEMENT LA PIPELINE FINALE, TOUT TRUC QUI N'A PAS MARCHE NE DOIT PAS ETRE MONTRE** (on met juste ce qui marche quoi, et on justifie rapidement). Par défaut, on a toujours les meilleurs hyperparamètres : pas besoin de le dire, et surtout, pas dire "Y'aurait peut-être mieux avec des meilleurs hyperparamètres". 
 
 ## Modèles 
 - [ ] SVM non-linéaire
